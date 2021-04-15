@@ -71,7 +71,7 @@ namespace ProjetoPessoal
             this.txtlicenca.Name = "txtlicenca";
             this.txtlicenca.Size = new System.Drawing.Size(358, 20);
             this.txtlicenca.TabIndex = 3;
-            this.txtlicenca.Validated += new System.EventHandler(this.txtlicenca_Validated);
+            this.txtlicenca.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtlicenca_KeyDown);
             // 
             // btnok
             // 
@@ -91,6 +91,7 @@ namespace ProjetoPessoal
             this.btncancelar.TabIndex = 5;
             this.btncancelar.Text = "Cancelar";
             this.btncancelar.UseVisualStyleBackColor = true;
+            this.btncancelar.Click += new System.EventHandler(this.btncancelar_Click);
             // 
             // SenhaLiberacaoSistema
             // 

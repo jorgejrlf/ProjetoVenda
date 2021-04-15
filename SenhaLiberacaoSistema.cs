@@ -23,23 +23,32 @@ namespace ProjetoPessoal
             txtnumeroSerie.Text = util.MontarNumerochave();
         }
 
-        private void txtlicenca_Validated(object sender, EventArgs e)
-        {
-            Utilitarios util = new Utilitarios();
-            if (txtnumeroSerie.Text != util.CriptografarChave(txtlicenca.Text))
-            {
-                MessageBox.Show("Licença digitada não e válida!");
-            }
-        }
-
         private void btnok_Click(object sender, EventArgs e)
         {
             Utilitarios util = new Utilitarios();
-            if (txtnumeroSerie.Text != util.CriptografarChave(txtlicenca.Text))
+            if (txtlicenca.Text != "" && txtnumeroSerie.Text == util.CriptografarChave(txtlicenca.Text))
+            {
+                util.InsercaoNoBanco("Insert", "Licenca", "Criptografia", "'" + util.CriptografarChave(txtlicenca.Text) + "'");
+                util._licencasistema = true;               
+            }
+            else
             {
                 MessageBox.Show("Licença digitada não e válida!");
+                txtlicenca.Focus();
             }
-            util._licencasistema = true;
+        }
+
+        private void btncancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtlicenca_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnok.Focus();
+            }
         }
     }
 }

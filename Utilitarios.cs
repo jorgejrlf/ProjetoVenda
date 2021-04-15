@@ -348,7 +348,6 @@ namespace ProjetoPessoal
         {
             try
             {
-                TelaVenda tela = new TelaVenda();
                 SenhaLiberacaoSistema senha = new SenhaLiberacaoSistema();
                 string numeroserie = "", csql = "";
 
@@ -358,42 +357,47 @@ namespace ProjetoPessoal
                 DataTable numeroSeriebanco = ConsultaBanco(csql);
                 if (numeroSeriebanco.Rows.Count == 0)
                 {
-                    if (MessageBox.Show("Licença do software não encontrada! Deseja fazer a digitação?", "Atenção!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-                    {
-                        MessageBox.Show("Sistemas será fechado!!!");
-                        tela.FercharSistema();
-                    }
-                    else
+                    if (MessageBox.Show("Licença do software não encontrada! Deseja fazer a digitação?", "Atenção!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         senha.ShowDialog();
                         if (licencaSistema == false)
                         {
-                            tela.FercharSistema();
+                            Environment.Exit(0);
                         }
-                        InsercaoNoBanco("Insert", "Licenca", "Criptografia", "'" + numeroserie + "'");
+                        else
+                        {
+                            InsercaoNoBanco("Insert", "Licenca", "Criptografia", "'" + CriptografarChave(numeroserie) + "'");
+                            licencaSistema = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sistemas será fechado!!!");
+                        Environment.Exit(0);
                     }
                 }
                 else
                 {
-                    if (numeroSeriebanco.Rows[0].ItemArray[0].ToString() != numeroserie)
+                    if (numeroSeriebanco.Rows[0].ItemArray[0].ToString() != CriptografarChave(numeroserie))
                     {
                         if (MessageBox.Show("Licenca de uso encontrada esta incorreta! Deseja digitar uma licença válida?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
                             senha.ShowDialog();
                             if (licencaSistema == false)
                             {
-                                tela.FercharSistema();
+                                Environment.Exit(0);
                             }
                         }
                         MessageBox.Show("Sistemas será fechado!!!");
-                        TelaVenda t = new TelaVenda();
-                        t.FercharSistema();
+                        Environment.Exit(0);
                     }
+                    licencaSistema = true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Application.Exit();
             }
         }
         public string MontarNumerochave()
@@ -406,7 +410,6 @@ namespace ProjetoPessoal
                 {
                     numeroserieHD = DHD["SerialNumber"].ToString();
                 }
-                numeroserieHD = CriptografarChave(numeroserieHD.Trim());
                 return numeroserieHD;
             }
             catch (Exception ex)

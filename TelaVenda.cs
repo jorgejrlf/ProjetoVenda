@@ -160,6 +160,11 @@ namespace ProjetoPessoal
             Utilitarios util = new Utilitarios();
             util.VerificaBancoexistente();
             util.ObeterNumeroSerie();
+            if (util._licencasistema == false)
+            {
+                FercharSistema();
+            }
+                
         }
         public double GetTotalProduto()
         {
@@ -587,7 +592,7 @@ namespace ProjetoPessoal
             {
                 if (MessageBox.Show("Deseja fechar o sistema?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    this.Close();
+                    Environment.Exit(0);
                 }
             }
             catch (Exception ex)
