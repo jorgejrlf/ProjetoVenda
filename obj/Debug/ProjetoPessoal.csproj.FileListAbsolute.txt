@@ -23,5 +23,4 @@ D:\Projetos\ProjetoPessoal\ProjetoPessoal\bin\Debug\System.IO.Ports.xml
 D:\Projetos\ProjetoPessoal\ProjetoPessoal\obj\Debug\ProjetoPessoal.Pagamento.resources
 D:\Projetos\ProjetoPessoal\ProjetoPessoal\obj\Debug\ProjetoPessoal.Menu.resources
 D:\Projetos\ProjetoPessoal\ProjetoPessoal\obj\Debug\ProjetoPessoal.CadastroProduto.resources
-D:\Projetos\ProjetoPessoal\ProjetoPessoal\obj\Debug\ProjetoPessoal.csprojAssemblyReference.cache
 D:\Projetos\ProjetoPessoal\ProjetoPessoal\obj\Debug\ProjetoPessoal.SenhaLiberacaoSistema.resources

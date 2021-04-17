@@ -163,15 +163,16 @@ namespace ProjetoPessoal
             try
             {
                 Utilitarios util = new Utilitarios();
-                string sql = "select max(codigo) from produtos";
+                string sql = "select * from produtos order by codigo desc limit 1";
                 DataTable codigo = new DataTable();
                 codigo = util.ConsultaBanco(sql);
 
                 if (codigo.Rows.Count > 0)
                 {
+
                     return codigo.Rows[0].ItemArray[0].ToString();
                 }
-                return "";
+                return "0";
             }
             catch (Exception ex)
             {
@@ -240,7 +241,8 @@ namespace ProjetoPessoal
                     util.InsercaoNoBanco("update", "produtos", "set", "descricao = '" + txtDescricao.Text + "' , preco = " + string.Format("{0:00}", txtPrecoVenda.Text).Replace(",", ".") + " where codigo = " + txtCodigoBarra.Text.Replace("0", ""));
                 }                
                 ControlarComponente("Cancelar");
-                CarregarGridProdutos();             
+                CarregarGridProdutos();
+                btnNovo.Focus();
             }
             catch (Exception ex) 
             {
@@ -265,22 +267,34 @@ namespace ProjetoPessoal
 
         private void txtDescricao_Validated(object sender, EventArgs e)
         {
-            if (txtDescricao.Text == "" && btnCancelar.Focused == false)
+            try
             {
-                MessageBox.Show("Favor preecher o campo descrição");
-            }
-            else if (Operacao == "Novo" && btnCancelar.Focused == false)
-            {
-                CodigoProduto = double.Parse(CarregarCodigoDisponivelProduto()) + 1;
-                txtCodigoBarra.Text = CodigoProduto.ToString("0000000000000");
-                if (VerificarProdutosMesmoNome() == false)
+                if (txtDescricao.Text == "" && btnCancelar.Focused == false)
                 {
-                    MessageBox.Show("Já existe produto cadastrado com a descrição: " + txtDescricao.Text, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtDescricao.Text = "";
-                    txtCodigoBarra.Text = "";
-                    txtDescricao.Focus();
+                    MessageBox.Show("Favor preecher o campo descrição");
+                }
+                else if (Operacao == "Novo" && btnCancelar.Focused == false)
+                {
+                    //CodigoProduto = double.Parse(CarregarCodigoDisponivelProduto()) + 1;
+                    txtCodigoBarra.Text = CodigoProduto.ToString("0000000000000");
+                    if (VerificarProdutosMesmoNome() == false)
+                    {
+                        MessageBox.Show("Já existe produto cadastrado com a descrição: " + txtDescricao.Text, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtDescricao.Text = "";
+                        txtCodigoBarra.Text = "";
+                        txtDescricao.Focus();
+                    }
+                    else
+                    {
+                        txtPrecoVenda.Focus();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void txtCodigoBarra_Validated(object sender, EventArgs e)
@@ -305,21 +319,51 @@ namespace ProjetoPessoal
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            ControlarComponente("Cancelar");
-            PreencherCamposComLinhaGrid();
-            CarregaCampoTexto();
+            try
+            {
+                ControlarComponente("Cancelar");
+                PreencherCamposComLinhaGrid();
+                CarregaCampoTexto();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if(verificaProdutosVendido() == true)
+            try
             {
-                MessageBox.Show("Este não pode ser excluido por já existir venda do mesmo.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (verificaProdutosVendido() == true)
+                {
+                    MessageBox.Show("Este não pode ser excluido por já existir venda do mesmo.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    ExcluirItensCadastrado();
+                    CarregarGridProdutos();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ExcluirItensCadastrado();
-                CarregarGridProdutos();
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtDescricao_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPrecoVenda.Focus();
+            }
+        }
+
+        private void txtPrecoVenda_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnGravar.Focus();
             }
         }
     }

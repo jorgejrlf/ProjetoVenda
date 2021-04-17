@@ -16,20 +16,7 @@ namespace ProjetoPessoal
 
         public string ResultadoPesquisa = "";
         public SQLiteConnection SQLiteConnection { get; set; }
-        SQLiteDataAdapter da = null;
-        private bool licencaSistema = false;
-        public bool _licencasistema
-        {
-            get
-            {
-                return licencaSistema;
-            }
-            set
-            {
-                licencaSistema = value;
-            }
-        }
-
+        SQLiteDataAdapter da = null;        
         public bool VerificaBancoexistente()
         {
             try
@@ -351,7 +338,7 @@ namespace ProjetoPessoal
                 SenhaLiberacaoSistema senha = new SenhaLiberacaoSistema();
                 string numeroserie = "", csql = "";
 
-                numeroserie = MontarNumerochave();
+                numeroserie = MontarNumerochave().Trim();
                 csql = "Select Criptografia from Licenca";
 
                 DataTable numeroSeriebanco = ConsultaBanco(csql);
@@ -360,14 +347,9 @@ namespace ProjetoPessoal
                     if (MessageBox.Show("Licença do software não encontrada! Deseja fazer a digitação?", "Atenção!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         senha.ShowDialog();
-                        if (licencaSistema == false)
+                        if (senha._licencasistema == false)
                         {
                             Environment.Exit(0);
-                        }
-                        else
-                        {
-                            InsercaoNoBanco("Insert", "Licenca", "Criptografia", "'" + CriptografarChave(numeroserie) + "'");
-                            licencaSistema = true;
                         }
                     }
                     else
@@ -383,7 +365,7 @@ namespace ProjetoPessoal
                         if (MessageBox.Show("Licenca de uso encontrada esta incorreta! Deseja digitar uma licença válida?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
                             senha.ShowDialog();
-                            if (licencaSistema == false)
+                            if (senha._licencasistema == false)
                             {
                                 Environment.Exit(0);
                             }
@@ -391,7 +373,6 @@ namespace ProjetoPessoal
                         MessageBox.Show("Sistemas será fechado!!!");
                         Environment.Exit(0);
                     }
-                    licencaSistema = true;
                 }
             }
             catch (Exception ex)
@@ -422,12 +403,12 @@ namespace ProjetoPessoal
         {
             try
             {
-                chave += "FBS1ST3M4CR1PT0GR4F4D0";
-                byte[] chaveNumerica = Descriptografar(chave);
-                string novaChave = "";
+                string novaChave = "FBS1ST3M4" + chave + "CR1PT0GR4F4D0";
+                byte[] chaveNumerica = Descriptografar(novaChave);
+                novaChave = "";
                 for (int i = 0; i < chaveNumerica.Length; i++)
                 {
-                    novaChave += (char)(chaveNumerica[i] - 42);
+                    novaChave += chaveNumerica[i];
                 }
                 return novaChave;
             }

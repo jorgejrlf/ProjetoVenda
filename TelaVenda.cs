@@ -153,18 +153,26 @@ namespace ProjetoPessoal
                 FechouVenda = value;
             }
         }
+        private bool licencaSistema = false;
+        public bool _licencasistema
+        {
+            get
+            {
+                return licencaSistema;
+            }
+            set
+            {
+                licencaSistema = value;
+            }
+        }
         int TipoPesquisa = 0;
         public TelaVenda()
         {
             InitializeComponent();
             Utilitarios util = new Utilitarios();
+            SenhaLiberacaoSistema sls = new SenhaLiberacaoSistema();
             util.VerificaBancoexistente();
-            util.ObeterNumeroSerie();
-            if (util._licencasistema == false)
-            {
-                FercharSistema();
-            }
-                
+            util.ObeterNumeroSerie();                
         }
         public double GetTotalProduto()
         {

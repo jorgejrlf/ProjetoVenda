@@ -18,7 +18,7 @@ namespace ProjetoPessoal
                 using (PrintDocument pd = new PrintDocument())
                 {
                     pd.PrintPage += new PrintPageEventHandler(pd_PrintPage);
-                    Margins margins = new Margins(100, 100, 100, 100);
+                    Margins margins = new Margins(0, 0, 0, 0);
                     pd.DefaultPageSettings.Margins = margins;
                     pd.Print();
                 }
@@ -34,7 +34,7 @@ namespace ProjetoPessoal
         {
             try
             {
-                using (var font = new Font("Courier New", 8))
+                using (var font = new Font("Courier New", 8, FontStyle.Bold))
                 using (var brush = new SolidBrush(Color.Black))
                 {
                     float line = e.MarginBounds.Height / font.GetHeight(e.Graphics);

@@ -7,29 +7,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace ProjetoPessoal
 {
     public partial class SenhaLiberacaoSistema : Form
     {
+        public bool _licencasistema
+        {
+            get
+            {
+                return licencaSistema;
+            }
+            set
+            {
+                licencaSistema = value;
+            }
+        }
         public SenhaLiberacaoSistema()
         {
             InitializeComponent();
         }
-
+        Utilitarios util = new Utilitarios();
+        private bool licencaSistema = false;
         private void SenhaLiberacaoSistema_Load(object sender, EventArgs e)
         {
-            Utilitarios util = new Utilitarios();
-            txtnumeroSerie.Text = util.MontarNumerochave();
+            txtnumeroSerie.Text = util.MontarNumerochave().Trim();
         }
 
         private void btnok_Click(object sender, EventArgs e)
         {
-            Utilitarios util = new Utilitarios();
-            if (txtlicenca.Text != "" && txtnumeroSerie.Text == util.CriptografarChave(txtlicenca.Text))
+            string licenca = "";
+            licenca = txtlicenca.Text;
+            if (txtlicenca.Text != "" && (licenca == util.CriptografarChave(txtnumeroSerie.Text)))
             {
-                util.InsercaoNoBanco("Insert", "Licenca", "Criptografia", "'" + util.CriptografarChave(txtlicenca.Text) + "'");
-                util._licencasistema = true;               
+                util.InsercaoNoBanco("Insert", "Licenca", "Criptografia", "'" + licenca + "'");
+                _licencasistema = true;
+                this.Close();
             }
             else
             {

@@ -102,6 +102,7 @@ namespace ProjetoPessoal
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(304, 25);
             this.txtDescricao.TabIndex = 4;
+            this.txtDescricao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescricao_KeyDown);
             this.txtDescricao.Validated += new System.EventHandler(this.txtDescricao_Validated);
             // 
             // lblDescricao
@@ -196,6 +197,7 @@ namespace ProjetoPessoal
             this.txtPrecoVenda.Name = "txtPrecoVenda";
             this.txtPrecoVenda.Size = new System.Drawing.Size(106, 25);
             this.txtPrecoVenda.TabIndex = 9;
+            this.txtPrecoVenda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrecoVenda_KeyDown);
             this.txtPrecoVenda.Validated += new System.EventHandler(this.txtPrecoVenda_Validated);
             // 
             // lblPrecoVenda

@@ -44,7 +44,7 @@ namespace ProjetoPessoal
                 Utilitarios util = new Utilitarios();
                 DataTable pagamentos = new DataTable();
                 DataGridViewImageColumn img = new DataGridViewImageColumn();
-                string caminho = @"D:/Projetos/ProjetoPessoal/ProjetoPessoal/Imagens";
+                string caminho = Application.StartupPath + @"\Imagens";
                 pagamentos = util.ConsultaBanco(sql);
                 for (int i = 0; i < pagamentos.Rows.Count; i++)
                 {
