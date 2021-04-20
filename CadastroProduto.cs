@@ -202,6 +202,28 @@ namespace ProjetoPessoal
                 return true;
             }
         }
+        public bool VerificarProdutosMesmoCodigo()
+        {
+            try
+            {
+                Utilitarios util = new Utilitarios();
+                string sql = "select codigo from produtos where codigo = '" + txtCodigoBarra.Text + "'";
+                DataTable codigo = new DataTable();
+                codigo = util.ConsultaBanco(sql);
+                if (codigo.Rows.Count > 0)
+                {
+                    if (codigo.Rows[0].ItemArray[0].ToString() == txtCodigoBarra.Text)
+                        return false;
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true;
+            }
+        }
         public bool verificaProdutosVendido()
         {
             try
@@ -276,7 +298,6 @@ namespace ProjetoPessoal
                 else if (Operacao == "Novo" && btnCancelar.Focused == false)
                 {
                     //CodigoProduto = double.Parse(CarregarCodigoDisponivelProduto()) + 1;
-                    txtCodigoBarra.Text = CodigoProduto.ToString("0000000000000");
                     if (VerificarProdutosMesmoNome() == false)
                     {
                         MessageBox.Show("Já existe produto cadastrado com a descrição: " + txtDescricao.Text, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -286,7 +307,7 @@ namespace ProjetoPessoal
                     }
                     else
                     {
-                        txtPrecoVenda.Focus();
+                        txtCodigoBarra.Focus();
                     }
                 }
             }
@@ -295,14 +316,6 @@ namespace ProjetoPessoal
                 MessageBox.Show(ex.Message);
             }
             
-        }
-
-        private void txtCodigoBarra_Validated(object sender, EventArgs e)
-        {
-            if (txtCodigoBarra.Text == "" && btnCancelar.Focused == false)
-            {
-                MessageBox.Show("Favor preecher o campo código de barras");
-            }
         }
 
         private void txtPrecoVenda_Validated(object sender, EventArgs e)
@@ -355,7 +368,7 @@ namespace ProjetoPessoal
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtPrecoVenda.Focus();
+                txtCodigoBarra.Focus();
             }
         }
 
@@ -364,6 +377,36 @@ namespace ProjetoPessoal
             if (e.KeyCode == Keys.Enter)
             {
                 btnGravar.Focus();
+            }
+        }
+
+        private void txtCodigoBarra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && txtCodigoBarra.Text != "")
+            {
+                if (!VerificarProdutosMesmoCodigo())
+                {
+                    MessageBox.Show("Já existe um produto cadastro com este código de barras!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtCodigoBarra.Text = "";
+                    txtCodigoBarra.Focus();
+                }
+                else
+                {
+                    _codigoproduto = double.Parse(txtCodigoBarra.Text);
+                    txtCodigoBarra.Text = CodigoProduto.ToString("0000000000000");
+                    txtPrecoVenda.Focus();
+                }
+            }
+            else if (e.KeyCode == Keys.Enter && txtCodigoBarra.Text == "")
+            {
+                MessageBox.Show("Favor preecher o codigo do produto!");
+            }
+        }
+        private void CadastroProduto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
             }
         }
     }

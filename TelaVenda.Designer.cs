@@ -29,11 +29,11 @@ namespace ProjetoPessoal
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaVenda));
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.txtTotalProduto = new System.Windows.Forms.TextBox();
@@ -60,11 +60,11 @@ namespace ProjetoPessoal
             this.IconCancelamento = new System.Windows.Forms.ToolStripButton();
             this.IconSair = new System.Windows.Forms.ToolStripButton();
             this.grdPesquisa = new System.Windows.Forms.DataGridView();
-            this.GrupoPesquisa = new System.Windows.Forms.GroupBox();
-            this.txtDescricaoPesquisa = new System.Windows.Forms.TextBox();
             this.Codbarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescricaoPesquisa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrVendaPesquisa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GrupoPesquisa = new System.Windows.Forms.GroupBox();
+            this.txtDescricaoPesquisa = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridCupom)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -202,25 +202,25 @@ namespace ProjetoPessoal
             this.GridCupom.AllowUserToDeleteRows = false;
             this.GridCupom.AllowUserToResizeColumns = false;
             this.GridCupom.AllowUserToResizeRows = false;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White;
-            this.GridCupom.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.GridCupom.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.GridCupom.BackgroundColor = System.Drawing.Color.LemonChiffon;
             this.GridCupom.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridCupom.CausesValidation = false;
             this.GridCupom.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.GridCupom.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.GridCupom.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Verdana", 10F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridCupom.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridCupom.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.GridCupom.ColumnHeadersHeight = 25;
             this.GridCupom.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Num,
@@ -229,14 +229,14 @@ namespace ProjetoPessoal
             this.prunit,
             this.qtd,
             this.total});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridCupom.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridCupom.DefaultCellStyle = dataGridViewCellStyle3;
             this.GridCupom.Enabled = false;
             this.GridCupom.EnableHeadersVisualStyles = false;
             this.GridCupom.GridColor = System.Drawing.Color.LemonChiffon;
@@ -246,18 +246,18 @@ namespace ProjetoPessoal
             this.GridCupom.ReadOnly = true;
             this.GridCupom.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.GridCupom.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridCupom.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridCupom.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.GridCupom.RowHeadersVisible = false;
             this.GridCupom.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GridCupom.RowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridCupom.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.GridCupom.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
             this.GridCupom.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.LemonChiffon;
             this.GridCupom.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -422,28 +422,6 @@ namespace ProjetoPessoal
             this.grdPesquisa.TabIndex = 9;
             this.grdPesquisa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdPesquisa_KeyDown);
             // 
-            // GrupoPesquisa
-            // 
-            this.GrupoPesquisa.BackColor = System.Drawing.Color.Transparent;
-            this.GrupoPesquisa.Controls.Add(this.txtDescricaoPesquisa);
-            this.GrupoPesquisa.Controls.Add(this.grdPesquisa);
-            this.GrupoPesquisa.Location = new System.Drawing.Point(341, 216);
-            this.GrupoPesquisa.Name = "GrupoPesquisa";
-            this.GrupoPesquisa.Size = new System.Drawing.Size(633, 282);
-            this.GrupoPesquisa.TabIndex = 10;
-            this.GrupoPesquisa.TabStop = false;
-            this.GrupoPesquisa.Visible = false;
-            this.GrupoPesquisa.Validated += new System.EventHandler(this.GrupoPesquisa_Validated);
-            // 
-            // txtDescricaoPesquisa
-            // 
-            this.txtDescricaoPesquisa.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescricaoPesquisa.Location = new System.Drawing.Point(0, 2);
-            this.txtDescricaoPesquisa.Name = "txtDescricaoPesquisa";
-            this.txtDescricaoPesquisa.Size = new System.Drawing.Size(633, 33);
-            this.txtDescricaoPesquisa.TabIndex = 10;
-            this.txtDescricaoPesquisa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescricaoPesquisa_KeyDown);
-            // 
             // Codbarras
             // 
             this.Codbarras.FillWeight = 30F;
@@ -466,6 +444,28 @@ namespace ProjetoPessoal
             this.PrVendaPesquisa.Name = "PrVendaPesquisa";
             this.PrVendaPesquisa.ReadOnly = true;
             this.PrVendaPesquisa.Width = 90;
+            // 
+            // GrupoPesquisa
+            // 
+            this.GrupoPesquisa.BackColor = System.Drawing.Color.Transparent;
+            this.GrupoPesquisa.Controls.Add(this.txtDescricaoPesquisa);
+            this.GrupoPesquisa.Controls.Add(this.grdPesquisa);
+            this.GrupoPesquisa.Location = new System.Drawing.Point(341, 216);
+            this.GrupoPesquisa.Name = "GrupoPesquisa";
+            this.GrupoPesquisa.Size = new System.Drawing.Size(633, 282);
+            this.GrupoPesquisa.TabIndex = 10;
+            this.GrupoPesquisa.TabStop = false;
+            this.GrupoPesquisa.Visible = false;
+            this.GrupoPesquisa.Validated += new System.EventHandler(this.GrupoPesquisa_Validated);
+            // 
+            // txtDescricaoPesquisa
+            // 
+            this.txtDescricaoPesquisa.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescricaoPesquisa.Location = new System.Drawing.Point(0, 2);
+            this.txtDescricaoPesquisa.Name = "txtDescricaoPesquisa";
+            this.txtDescricaoPesquisa.Size = new System.Drawing.Size(633, 33);
+            this.txtDescricaoPesquisa.TabIndex = 10;
+            this.txtDescricaoPesquisa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescricaoPesquisa_KeyDown);
             // 
             // TelaVenda
             // 
@@ -492,6 +492,7 @@ namespace ProjetoPessoal
             this.Name = "TelaVenda";
             this.Text = "TelaVenda";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.TelaVenda_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GridCupom)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

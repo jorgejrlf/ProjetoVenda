@@ -44,26 +44,11 @@ namespace ProjetoPessoal
                 Utilitarios util = new Utilitarios();
                 DataTable pagamentos = new DataTable();
                 DataGridViewImageColumn img = new DataGridViewImageColumn();
-                string caminho = Application.StartupPath + @"\Imagens";
                 pagamentos = util.ConsultaBanco(sql);
+                
                 for (int i = 0; i < pagamentos.Rows.Count; i++)
                 {
-                    if (pagamentos.Rows[i].ItemArray[0].ToString() == "Dinheiro")
-                    {
-                        grdCondicaoPagamento.Rows.Add(Image.FromFile(caminho + "/Dinheiro.jpg"), pagamentos.Rows[i].ItemArray[0]);
-                    }
-                    else if (pagamentos.Rows[i].ItemArray[0].ToString() == "Cartao Credito")
-                    {
-                        grdCondicaoPagamento.Rows.Add(Image.FromFile(caminho + "/CartaoCredito.jpeg"), pagamentos.Rows[i].ItemArray[0]);
-                    }
-                    else if (pagamentos.Rows[i].ItemArray[0].ToString() == "Cartao Debito")
-                    {
-                        grdCondicaoPagamento.Rows.Add(Image.FromFile(caminho + "/CartaoDebito.jpeg"), pagamentos.Rows[i].ItemArray[0]);
-                    }
-                    else
-                    {
-                        grdCondicaoPagamento.Rows.Add(Image.FromFile(caminho + "/Alimentação.png"), pagamentos.Rows[i].ItemArray[0]);
-                    }
+                    grdCondicaoPagamento.Rows.Add(pagamentos.Rows[i].ItemArray[0]);
                 }
             }
             catch (Exception ex)
@@ -72,7 +57,7 @@ namespace ProjetoPessoal
                 throw;
             }            
         }
-
+        
         private void Pagamento_Shown(object sender, EventArgs e)
         {
             txtValorFinalizadora.Focus();
@@ -94,7 +79,7 @@ namespace ProjetoPessoal
                     }
                     grdCondicaoPagamento.Refresh();
                     grdCondicaoPagamento.Focus();
-                    grdCondicaoPagamento.CurrentCell = grdCondicaoPagamento.Rows[0].Cells[1];
+                    grdCondicaoPagamento.CurrentCell = grdCondicaoPagamento.Rows[0].Cells[0];
                 }
                 else if (e.KeyCode == Keys.Escape && txtValorPagamento.Text == txtValorRestante.Text)
                 {
@@ -123,7 +108,7 @@ namespace ProjetoPessoal
                 {
                     e.Handled = true;
                     ValorTotalCupom -= double.Parse(txtValorFinalizadora.Text.Replace("R$", ""));
-                    util.InsercaoNoBanco("Insert", "Pagamento_Cupom", "descricao, numero_cupom, valor_pagamento", "'" + grdCondicaoPagamento.CurrentRow.Cells[1].Value.ToString() + "' ," + TelaVenda._ultimocupom.ToString() + "," + txtValorFinalizadora.Text.Replace("R$", "").Replace(".", "").Replace(",", "."));
+                    util.InsercaoNoBanco("Insert", "Pagamento_Cupom", "descricao, numero_cupom, valor_pagamento", "'" + grdCondicaoPagamento.CurrentRow.Cells[0].Value.ToString() + "' ," + TelaVenda._ultimocupom.ToString() + "," + txtValorFinalizadora.Text.Replace("R$", "").Replace(".", "").Replace(",", "."));
                     txtValorRestante.Text = string.Format("{0:0.00}", _valortotalcupom);
                     txtValorFinalizadora.Text = "";
                     txtValorFinalizadora.Focus();

@@ -132,7 +132,7 @@ namespace ProjetoPessoal
             this.txtCodigoBarra.Name = "txtCodigoBarra";
             this.txtCodigoBarra.Size = new System.Drawing.Size(169, 25);
             this.txtCodigoBarra.TabIndex = 7;
-            this.txtCodigoBarra.Validated += new System.EventHandler(this.txtCodigoBarra_Validated);
+            this.txtCodigoBarra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
             // grdprodutos
             // 
@@ -246,10 +246,12 @@ namespace ProjetoPessoal
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNovo);
+            this.KeyPreview = true;
             this.Name = "CadastroProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CadastroProduto";
             this.Load += new System.EventHandler(this.CadastroProduto_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CadastroProduto_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdprodutos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -168,11 +168,7 @@ namespace ProjetoPessoal
         int TipoPesquisa = 0;
         public TelaVenda()
         {
-            InitializeComponent();
-            Utilitarios util = new Utilitarios();
-            SenhaLiberacaoSistema sls = new SenhaLiberacaoSistema();
-            util.VerificaBancoexistente();
-            util.ObeterNumeroSerie();                
+            InitializeComponent();            
         }
         public double GetTotalProduto()
         {
@@ -664,6 +660,12 @@ namespace ProjetoPessoal
                 MessageBox.Show(ex.Message);
                 throw;
             }            
+        }
+        private void TelaVenda_Load(object sender, EventArgs e)
+        {
+            Utilitarios util = new Utilitarios();
+            util.VerificaBancoexistente();
+            util.ObeterNumeroSerie();
         }
     }
 }
