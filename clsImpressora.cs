@@ -82,10 +82,13 @@ namespace ProjetoPessoal
                 DataTable produtos = new DataTable();
                 LinhasCupom += "----------------------------------------\r\n";
                 LinhasCupom += "       HORTIFRUTI - PREÇO JUSTO         \r\n";
-                LinhasCupom += "  R. Cel. Arnaldo Xavier Cordeiro 582   \r\n";
-                LinhasCupom += "  Centro  CEP: 35628-970 - Morada - MG  \r\n";
+                LinhasCupom += "  R. Cel. Arnaldo Xavier Cordeiro, 582   \r\n";
+                LinhasCupom += "      Centro  CEP: 35628-000            \r\n";
+                LinhasCupom += "      Morada Nova de Minas - MG         \r\n";
+                LinhasCupom += "       CNPJ: 86.384.443/0001-49         \r\n";
+                LinhasCupom += "        IE: 435.878.983.00-10           \r\n";
                 LinhasCupom += "----------------------------------------\r\n";
-                LinhasCupom += "CUPOM: " + NumeroCupom.ToString().PadRight(18) + "Data: " + DateTime.Now.ToString().PadRight(10) + "\r\n";
+                LinhasCupom += "CUPOM: " + NumeroCupom.ToString().PadRight(9) + "Data: " + DateTime.Now.ToString("dd/MM/yy HH:mm:ss").PadRight(15) + "\r\n";
                 LinhasCupom += "----------------------------------------\r\n";
                 LinhasCupom += "N° |Codigo       | Descrição            \r\n";
                 LinhasCupom += "        P.Un           QTD.      Total  \r\n";
@@ -96,21 +99,23 @@ namespace ProjetoPessoal
                 {
                     string descricaoproduto = produtos.Rows[i].ItemArray[2].ToString();
                     LinhasCupom += string.Format("{0:000}", produtos.Rows[i].ItemArray[0]) + " " + string.Format("{0:0000000000000}", produtos.Rows[i].ItemArray[1]) + " " + descricaoproduto.PadRight(31) + "\r\n";
-                    LinhasCupom += string.Format("{0:0.00}", produtos.Rows[i].ItemArray[3]).PadLeft(15) + " " + string.Format("{0:0.00}", produtos.Rows[i].ItemArray[4]).PadLeft(15) + " " + string.Format("{0:0.00}", produtos.Rows[i].ItemArray[5]).PadLeft(16) + "\r\n";
+                    LinhasCupom += string.Format("{0:0.00}", produtos.Rows[i].ItemArray[3]).PadLeft(12) + " " + string.Format("{0:0.00}", produtos.Rows[i].ItemArray[4]).PadLeft(14) + " " + string.Format("{0:0.00}", produtos.Rows[i].ItemArray[5]).PadLeft(10) + "\r\n";
                 }
                 LinhasCupom += "                                        \r\n";
                 LinhasCupom += "----------------------------------------\r\n";
-                LinhasCupom += "Total: " + string.Format("{0:C}", TelaVenda._totalcupom).PadLeft(3517) + "\r\n";
+                LinhasCupom += "Total: " + string.Format("{0:C}", TelaVenda._totalcupom).PadLeft(3500) + "\r\n";
                 LinhasCupom += "----------------------------------------\r\n";
-                LinhasCupom += "Pagamento:                                        \r\n";
-                LinhasCupom += "                                                  \r\n";
+                LinhasCupom += "Pagamento:                              \r\n";
+                LinhasCupom += "                                        \r\n";
 
                 sql = "select descricao, valor_pagamento from pagamento_cupom where numero_cupom = " + NumeroCupom;
                 produtos = RecuperaDadosCupom(sql);
                 for (int i = 0; i < produtos.Rows.Count; i++)
                 {
-                    LinhasCupom += string.Format("{0:D20}", produtos.Rows[i].ItemArray[0]).PadRight(20) + "" + string.Format("{0:C}", produtos.Rows[i].ItemArray[1]).PadLeft(28) + "\r\n";
+                    LinhasCupom += string.Format("{0:D20}", produtos.Rows[i].ItemArray[0]).PadRight(10) + "" + string.Format("{0:C}", produtos.Rows[i].ItemArray[1]).PadLeft(28) + "\r\n";
                 }
+                LinhasCupom += "                                       \r\n";
+                LinhasCupom += "Troco: " + string.Format("{0:c}", Pagamento._valortroco).PadLeft(31) + "\r\n";
             }
             catch (Exception ex)
             {

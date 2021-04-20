@@ -260,7 +260,7 @@ namespace ProjetoPessoal
                 }
                 else
                 {
-                    util.InsercaoNoBanco("update", "produtos", "set", "descricao = '" + txtDescricao.Text + "' , preco = " + string.Format("{0:00}", txtPrecoVenda.Text).Replace(",", ".") + " where codigo = " + txtCodigoBarra.Text.Replace("0", ""));
+                    util.InsercaoNoBanco("update", "produtos", "set", "descricao = '" + txtDescricao.Text + "' , preco = " + string.Format("{0:00}", txtPrecoVenda.Text).Replace(",", ".") + " where codigo = " + txtCodigoBarra.Text.TrimStart('0'));
                 }                
                 ControlarComponente("Cancelar");
                 CarregarGridProdutos();

@@ -28,6 +28,18 @@ namespace ProjetoPessoal
                 ValorTotalCupom = value;
             }
         }
+        private static double ValorTroco;
+        public static double _valortroco
+        {
+            get
+            {
+                return ValorTroco;
+            }
+            set
+            {
+                ValorTroco = value;
+            }
+        }
         public Pagamento()
         {
             InitializeComponent();
@@ -118,6 +130,7 @@ namespace ProjetoPessoal
                     {
                         txtValorRestante.Text = "R$" + string.Format("{0:0.00}",_valortotalcupom * -1);
                         lblValorRestante.Text = "TROCO:";
+                        _valortroco =  double.Parse(txtValorRestante.Text.Replace("R$", ""));
                         lblValorRestante.BackColor = Color.Red;
                         timer1.Enabled = true;
                         TelaVenda._fechouvenda = true;
@@ -165,9 +178,16 @@ namespace ProjetoPessoal
 
         private void txtValorFinalizadora_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 44 && e.KeyChar != 13)
             {
                 e.Handled = true;
+            }
+            if (e.KeyChar == 44)
+            {
+                if (util.VerificaVirgula(txtValorFinalizadora.Text, e.KeyChar) == false)
+                {
+                    e.Handled = true;
+                }
             }
         }
     }
