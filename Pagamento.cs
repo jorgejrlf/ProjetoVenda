@@ -98,6 +98,7 @@ namespace ProjetoPessoal
                     if(MessageBox.Show("Deseja realmente cancelar a venda?", "Cancelamento venda", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         TelaVenda._desistenciavenda = true;
+                        this.Close();
                     }
                 }
                 else if (e.KeyCode == Keys.Escape && txtValorPagamento.Text == txtValorRestante.Text)
