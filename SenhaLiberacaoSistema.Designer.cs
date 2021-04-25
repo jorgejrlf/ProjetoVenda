@@ -59,11 +59,11 @@ namespace ProjetoPessoal
             // 
             // txtnumeroSerie
             // 
-            this.txtnumeroSerie.Enabled = false;
             this.txtnumeroSerie.Location = new System.Drawing.Point(158, 25);
             this.txtnumeroSerie.Name = "txtnumeroSerie";
             this.txtnumeroSerie.Size = new System.Drawing.Size(289, 20);
             this.txtnumeroSerie.TabIndex = 2;
+            this.txtnumeroSerie.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnumeroSerie_KeyPress);
             // 
             // txtlicenca
             // 

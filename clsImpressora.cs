@@ -89,6 +89,7 @@ namespace ProjetoPessoal
                 LinhasCupom += "        IE: 435.878.983.00-10           \r\n";
                 LinhasCupom += "----------------------------------------\r\n";
                 LinhasCupom += "CUPOM: " + NumeroCupom.ToString().PadRight(9) + "Data: " + DateTime.Now.ToString("dd/MM/yy HH:mm:ss").PadRight(15) + "\r\n";
+                LinhasCupom += "            CUPOM NÃO FISCAL            \r\n";
                 LinhasCupom += "----------------------------------------\r\n";
                 LinhasCupom += "N° |Codigo       | Descrição            \r\n";
                 LinhasCupom += "        P.Un           QTD.      Total  \r\n";
@@ -102,6 +103,7 @@ namespace ProjetoPessoal
                     LinhasCupom += string.Format("{0:0.00}", produtos.Rows[i].ItemArray[3]).PadLeft(12) + " " + string.Format("{0:0.00}", produtos.Rows[i].ItemArray[4]).PadLeft(14) + " " + string.Format("{0:0.00}", produtos.Rows[i].ItemArray[5]).PadLeft(10) + "\r\n";
                 }
                 LinhasCupom += "                                        \r\n";
+                LinhasCupom += "            CUPOM NÃO FISCAL            \r\n";
                 LinhasCupom += "----------------------------------------\r\n";
                 LinhasCupom += "Total: " + string.Format("{0:C}", TelaVenda._totalcupom).PadLeft(3500) + "\r\n";
                 LinhasCupom += "----------------------------------------\r\n";
@@ -116,6 +118,8 @@ namespace ProjetoPessoal
                 }
                 LinhasCupom += "                                       \r\n";
                 LinhasCupom += "Troco: " + string.Format("{0:c}", Pagamento._valortroco).PadLeft(31) + "\r\n";
+                LinhasCupom += "----------------------------------------\r\n";
+                LinhasCupom += "Agradecemos a preferencia, Volte sempre!\r\n";
             }
             catch (Exception ex)
             {

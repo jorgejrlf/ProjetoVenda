@@ -153,6 +153,18 @@ namespace ProjetoPessoal
                 FechouVenda = value;
             }
         }
+        private static bool DesistnciaVenda;
+        public static bool _desistenciavenda
+        {
+            get
+            {
+                return DesistnciaVenda;
+            }
+            set
+            {
+                DesistnciaVenda = value;
+            }
+        }
         private bool licencaSistema = false;
         public bool _licencasistema
         {
@@ -274,6 +286,10 @@ namespace ProjetoPessoal
                         if (_fechouvenda == true)
                         {
                             cls.ImprimirCupom(_ultimocupom);
+                            LimparCamposFinalizacaoCupom();
+                        }
+                        else if (_fechouvenda == false && _desistenciavenda == true)
+                        {
                             LimparCamposFinalizacaoCupom();
                         }
                         _fechouvenda = false;

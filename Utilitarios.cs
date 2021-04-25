@@ -364,6 +364,7 @@ namespace ProjetoPessoal
                     {
                         if (MessageBox.Show("Licenca de uso encontrada esta incorreta! Deseja digitar uma licença válida?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
+                            DeletarLicencaInvalida();
                             senha.ShowDialog();
                             if (senha._licencasistema == false)
                             {
@@ -423,6 +424,22 @@ namespace ProjetoPessoal
         {
             byte[] _novaChave = System.Text.Encoding.ASCII.GetBytes(chave);
             return _novaChave;
+        }
+        public void DeletarLicencaInvalida()
+        {
+            try
+            {
+                using (var cmd = Conexaobanco().CreateCommand())
+                {
+                    string sql = "delete from licenca";
+                    cmd.CommandText = sql;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }            
         }
     }
 }

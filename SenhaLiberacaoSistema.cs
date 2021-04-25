@@ -64,5 +64,10 @@ namespace ProjetoPessoal
                 btnok.Focus();
             }
         }
+
+        private void txtnumeroSerie_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

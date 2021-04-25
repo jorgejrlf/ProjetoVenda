@@ -93,6 +93,13 @@ namespace ProjetoPessoal
                     grdCondicaoPagamento.Focus();
                     grdCondicaoPagamento.CurrentCell = grdCondicaoPagamento.Rows[0].Cells[0];
                 }
+                else if (e.KeyCode == Keys.C)
+                {
+                    if(MessageBox.Show("Deseja realmente cancelar a venda?", "Cancelamento venda", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        TelaVenda._desistenciavenda = true;
+                    }
+                }
                 else if (e.KeyCode == Keys.Escape && txtValorPagamento.Text == txtValorRestante.Text)
                 {
                     this.Close();
@@ -172,7 +179,6 @@ namespace ProjetoPessoal
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            TelaVenda tl = new TelaVenda();
             this.Close();
         }
 
