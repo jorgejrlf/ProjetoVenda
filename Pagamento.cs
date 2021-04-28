@@ -140,13 +140,13 @@ namespace ProjetoPessoal
                         lblValorRestante.Text = "TROCO:";
                         _valortroco =  double.Parse(txtValorRestante.Text.Replace("R$", ""));
                         lblValorRestante.BackColor = Color.Red;
-                        timer1.Enabled = true;
                         TelaVenda._fechouvenda = true;
+                        this.Close();
                     }
                     else if (double.Parse(txtValorRestante.Text.Replace("R$", "")) == 0)
                     {
-                        timer1.Enabled = true;
                         TelaVenda._fechouvenda = true;
+                        this.Close();
                     }
                     else
                     {
@@ -176,11 +176,6 @@ namespace ProjetoPessoal
                 throw;
             }
             
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void txtValorFinalizadora_KeyPress(object sender, KeyPressEventArgs e)

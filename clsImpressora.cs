@@ -80,6 +80,7 @@ namespace ProjetoPessoal
             {
                 string sql = "";
                 DataTable produtos = new DataTable();
+                LinhasCupom += "            CUPOM NÃO FISCAL            \r\n";
                 LinhasCupom += "----------------------------------------\r\n";
                 LinhasCupom += "       HORTIFRUTI - PREÇO JUSTO         \r\n";
                 LinhasCupom += "  R. Cel. Arnaldo Xavier Cordeiro, 582   \r\n";
@@ -89,7 +90,6 @@ namespace ProjetoPessoal
                 LinhasCupom += "        IE: 435.878.983.00-10           \r\n";
                 LinhasCupom += "----------------------------------------\r\n";
                 LinhasCupom += "CUPOM: " + NumeroCupom.ToString().PadRight(9) + "Data: " + DateTime.Now.ToString("dd/MM/yy HH:mm:ss").PadRight(15) + "\r\n";
-                LinhasCupom += "            CUPOM NÃO FISCAL            \r\n";
                 LinhasCupom += "----------------------------------------\r\n";
                 LinhasCupom += "N° |Codigo       | Descrição            \r\n";
                 LinhasCupom += "        P.Un           QTD.      Total  \r\n";

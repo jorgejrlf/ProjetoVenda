@@ -29,18 +29,16 @@ namespace ProjetoPessoal
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grdCondicaoPagamento = new System.Windows.Forms.DataGridView();
+            this.DescricaoPagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LblValorTotal = new System.Windows.Forms.Label();
             this.txtValorPagamento = new System.Windows.Forms.TextBox();
             this.lblValorRestante = new System.Windows.Forms.Label();
             this.txtValorRestante = new System.Windows.Forms.TextBox();
             this.txtValorFinalizadora = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.DescricaoPagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCondicaoPagamento)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +72,19 @@ namespace ProjetoPessoal
             this.grdCondicaoPagamento.UseWaitCursor = true;
             this.grdCondicaoPagamento.Enter += new System.EventHandler(this.grdCondicaoPagamento_Enter);
             this.grdCondicaoPagamento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdCondicaoPagamento_KeyDown);
+            // 
+            // DescricaoPagamento
+            // 
+            this.DescricaoPagamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            this.DescricaoPagamento.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DescricaoPagamento.HeaderText = "";
+            this.DescricaoPagamento.Name = "DescricaoPagamento";
+            this.DescricaoPagamento.ReadOnly = true;
+            this.DescricaoPagamento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DescricaoPagamento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DescricaoPagamento.Width = 500;
             // 
             // LblValorTotal
             // 
@@ -136,24 +147,6 @@ namespace ProjetoPessoal
             this.label2.TabIndex = 6;
             this.label2.Text = "Valor Pagamento:";
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 2000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // DescricaoPagamento
-            // 
-            this.DescricaoPagamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            this.DescricaoPagamento.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DescricaoPagamento.HeaderText = "";
-            this.DescricaoPagamento.Name = "DescricaoPagamento";
-            this.DescricaoPagamento.ReadOnly = true;
-            this.DescricaoPagamento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DescricaoPagamento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DescricaoPagamento.Width = 500;
-            // 
             // Pagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,7 +179,6 @@ namespace ProjetoPessoal
         public System.Windows.Forms.DataGridView grdCondicaoPagamento;
         private System.Windows.Forms.TextBox txtValorFinalizadora;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescricaoPagamento;
     }
 }
