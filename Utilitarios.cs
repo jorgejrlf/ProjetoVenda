@@ -140,6 +140,7 @@ namespace ProjetoPessoal
                     TelaVenda._codigoproduto = double.Parse(dt.Rows[0].ItemArray[0].ToString());
                     TelaVenda._descricao = dt.Rows[0].ItemArray[1].ToString();
                     TelaVenda._precounitario = double.Parse(dt.Rows[0].ItemArray[2].ToString());
+                    TelaVenda._pesado = int.Parse(dt.Rows[0].ItemArray[3].ToString());
                     return true;
                 }
             }
@@ -440,6 +441,30 @@ namespace ProjetoPessoal
             {
                 MessageBox.Show(ex.Message);
             }            
+        }
+        public void VerificaVersao()
+        {
+            try
+            {
+                string sql = "select * from sqlite_master where type = 'table' and name = 'Versao'";
+                DataTable RetornoVerao = ConsultaBanco(sql);
+                if (RetornoVerao.Rows.Count == 0)
+                {
+                    using (var cmd = Conexaobanco().CreateCommand())
+                    {
+                        cmd.CommandText = "Create table Versao (CodigoVersao VARCHAR (10))";
+                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = "insert into Versao(CodigoVersao) values ('1.0.0') ";
+                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = "Alter table produtos add column Tipoproduto INTEGER default(1)";
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

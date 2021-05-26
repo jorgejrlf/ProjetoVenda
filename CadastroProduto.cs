@@ -38,6 +38,18 @@ namespace ProjetoPessoal
                 PrecoProduto = value;
             }
         }
+        private int TipoProduto;
+        public int _tipoproduto
+        {
+            get
+            {
+                return TipoProduto;
+            }
+            set
+            {
+                TipoProduto = value;
+            }
+        }
         private string Operacao;
         public string _operacao
         {
@@ -67,7 +79,7 @@ namespace ProjetoPessoal
                 grdprodutos.Rows.Clear();
                 DataTable produtos = new DataTable();
                 Utilitarios util = new Utilitarios();
-                string csql = "select codigo, descricao, preco from produtos";
+                string csql = "select codigo, descricao, preco, TipoProduto from produtos";
                 produtos = util.ConsultaBanco(csql);
 
                 if (produtos.Rows.Count > 0)
@@ -75,12 +87,14 @@ namespace ProjetoPessoal
                     CodigoProduto = double.Parse(produtos.Rows[0].ItemArray[0].ToString());
                     DescricaoProduto = produtos.Rows[0].ItemArray[1].ToString();
                     PrecoProduto = double.Parse(produtos.Rows[0].ItemArray[2].ToString());
+                    TipoProduto = int.Parse(produtos.Rows[0].ItemArray[3].ToString());
                     CarregaCampoTexto();
                     for (int i = 0; i < produtos.Rows.Count; i++)
                     {
                         CodigoProduto = double.Parse(produtos.Rows[i].ItemArray[0].ToString());
                         PrecoProduto = double.Parse(produtos.Rows[i].ItemArray[2].ToString());
-                        grdprodutos.Rows.Add(CodigoProduto.ToString("0000000000000"), produtos.Rows[i].ItemArray[1], PrecoProduto.ToString("0.00"));
+                        TipoProduto = int.Parse(produtos.Rows[i].ItemArray[3].ToString());
+                        grdprodutos.Rows.Add(CodigoProduto.ToString("0000000000000"), produtos.Rows[i].ItemArray[1], PrecoProduto.ToString("0.00"), TipoProduto);
                     }
                 }
                 //grdprodutos.CurrentCell = grdprodutos.Rows[0].Cells[0];
@@ -145,6 +159,7 @@ namespace ProjetoPessoal
             CodigoProduto = double.Parse(grdprodutos.CurrentRow.Cells[0].Value.ToString());
             DescricaoProduto = grdprodutos.CurrentRow.Cells[1].Value.ToString();
             PrecoProduto = double.Parse(grdprodutos.CurrentRow.Cells[2].Value.ToString());
+            TipoProduto = int.Parse(grdprodutos.CurrentRow.Cells[3].Value.ToString());
         }
 
         private void grdprodutos_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -157,6 +172,7 @@ namespace ProjetoPessoal
             txtCodigoBarra.Text = CodigoProduto.ToString("0000000000000");
             txtDescricao.Text = DescricaoProduto.ToString();
             txtPrecoVenda.Text = PrecoProduto.ToString("0.00");
+            chkPesado.CheckState = (CheckState)TipoProduto;
         }
         public string CarregarCodigoDisponivelProduto()
         {
@@ -256,11 +272,11 @@ namespace ProjetoPessoal
                 Utilitarios util = new Utilitarios();
                 if (Operacao == "Novo")
                 {
-                    util.InsercaoNoBanco("Insert", "produtos", "codigo, descricao, preco", txtCodigoBarra.Text + ",'" + txtDescricao.Text + "' ," + string.Format("{0:00}", txtPrecoVenda.Text).Replace(",", "."));
+                    util.InsercaoNoBanco("Insert", "produtos", "codigo, descricao, preco, TipoProduto", txtCodigoBarra.Text + ",'" + txtDescricao.Text + "' ," + string.Format("{0:00}", txtPrecoVenda.Text).Replace(",", ".") + "," + chkPesado.CheckState);
                 }
                 else
                 {
-                    util.InsercaoNoBanco("update", "produtos", "set", "descricao = '" + txtDescricao.Text + "' , preco = " + string.Format("{0:00}", txtPrecoVenda.Text).Replace(",", ".") + " where codigo = " + txtCodigoBarra.Text.TrimStart('0'));
+                    util.InsercaoNoBanco("update", "produtos", "set", "descricao = '" + txtDescricao.Text + "' , preco = " + string.Format("{0:00}", txtPrecoVenda.Text).Replace(",", ".") + " ,TipoProduto = " + (int)chkPesado.CheckState + " where codigo = " + txtCodigoBarra.Text.TrimStart('0'));
                 }                
                 ControlarComponente("Cancelar");
                 CarregarGridProdutos();

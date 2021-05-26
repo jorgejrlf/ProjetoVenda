@@ -38,14 +38,17 @@ namespace ProjetoPessoal
             this.lblCodigoBarra = new System.Windows.Forms.Label();
             this.txtCodigoBarra = new System.Windows.Forms.TextBox();
             this.grdprodutos = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtPrecoVenda = new System.Windows.Forms.TextBox();
             this.lblPrecoVenda = new System.Windows.Forms.Label();
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.chkPesado = new System.Windows.Forms.CheckBox();
+            this.lblPesado = new System.Windows.Forms.Label();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pesado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdprodutos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -143,7 +146,8 @@ namespace ProjetoPessoal
             this.grdprodutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,
             this.Descricao,
-            this.Valor});
+            this.Valor,
+            this.Pesado});
             this.grdprodutos.Location = new System.Drawing.Point(23, 12);
             this.grdprodutos.Name = "grdprodutos";
             this.grdprodutos.ReadOnly = true;
@@ -153,29 +157,10 @@ namespace ProjetoPessoal
             this.grdprodutos.TabIndex = 8;
             this.grdprodutos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdprodutos_CellEnter);
             // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Código Barras";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 180;
-            // 
-            // Descricao
-            // 
-            this.Descricao.HeaderText = "Descrição";
-            this.Descricao.Name = "Descricao";
-            this.Descricao.ReadOnly = true;
-            this.Descricao.Width = 420;
-            // 
-            // Valor
-            // 
-            this.Valor.HeaderText = "Valor Produto";
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            this.Valor.Width = 110;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblPesado);
+            this.groupBox1.Controls.Add(this.chkPesado);
             this.groupBox1.Controls.Add(this.txtPrecoVenda);
             this.groupBox1.Controls.Add(this.lblPrecoVenda);
             this.groupBox1.Controls.Add(this.txtDescricao);
@@ -233,6 +218,53 @@ namespace ProjetoPessoal
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // chkPesado
+            // 
+            this.chkPesado.AutoSize = true;
+            this.chkPesado.Location = new System.Drawing.Point(525, 93);
+            this.chkPesado.Name = "chkPesado";
+            this.chkPesado.Size = new System.Drawing.Size(15, 14);
+            this.chkPesado.TabIndex = 10;
+            this.chkPesado.UseVisualStyleBackColor = true;
+            // 
+            // lblPesado
+            // 
+            this.lblPesado.AutoSize = true;
+            this.lblPesado.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.lblPesado.Location = new System.Drawing.Point(459, 91);
+            this.lblPesado.Name = "lblPesado";
+            this.lblPesado.Size = new System.Drawing.Size(54, 17);
+            this.lblPesado.TabIndex = 11;
+            this.lblPesado.Text = "Pesado:";
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Código Barras";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 180;
+            // 
+            // Descricao
+            // 
+            this.Descricao.HeaderText = "Descrição";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.ReadOnly = true;
+            this.Descricao.Width = 390;
+            // 
+            // Valor
+            // 
+            this.Valor.HeaderText = "Valor Produto";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            this.Valor.Width = 110;
+            // 
+            // Pesado
+            // 
+            this.Pesado.HeaderText = "Pesado";
+            this.Pesado.Name = "Pesado";
+            this.Pesado.ReadOnly = true;
+            this.Pesado.Width = 50;
+            // 
             // CadastroProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,12 +303,15 @@ namespace ProjetoPessoal
         private System.Windows.Forms.TextBox txtCodigoBarra;
         private System.Windows.Forms.DataGridView grdprodutos;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.TextBox txtPrecoVenda;
         private System.Windows.Forms.Label lblPrecoVenda;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label lblPesado;
+        private System.Windows.Forms.CheckBox chkPesado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Pesado;
     }
 }

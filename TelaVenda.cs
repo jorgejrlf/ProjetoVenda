@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 using System.Drawing.Printing;
+using System.Text.RegularExpressions;
 
 namespace ProjetoPessoal
 {
@@ -177,10 +178,22 @@ namespace ProjetoPessoal
                 licencaSistema = value;
             }
         }
+        private static int Pesado;
+        public static int _pesado
+        {
+            get
+            {
+                return Pesado;
+            }
+            set
+            {
+                Pesado = value;
+            }
+        }
         int TipoPesquisa = 0;
         public TelaVenda()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
         public double GetTotalProduto()
         {
@@ -213,7 +226,7 @@ namespace ProjetoPessoal
                         Utilitarios util = new Utilitarios();
                         ArrayList produto = new ArrayList();
                         CodigoProduto = double.Parse(txtCodigoProduto.Text);
-                        string sql = "select codigo, descricao, preco from produtos where codigo = " + CodigoProduto;
+                        string sql = "select codigo, descricao, preco, TipoProduto from produtos where codigo = " + CodigoProduto;
                         if (util.RecuperaProduto(sql))
                         {
                             AtualizarCampos();
@@ -446,24 +459,141 @@ namespace ProjetoPessoal
         {
             try
             {
-                Utilitarios util = new Utilitarios();
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 44 && e.KeyChar != 13)
-                {
-                    e.Handled = true;
-                }
                 if (e.KeyChar == 44)
                 {
-                    if (util.VerificaVirgula(txtQuantidade.Text, e.KeyChar) == false)
-                    {
-                        e.Handled = true;
-                    }
+
+                    e.Handled = true;
                 }
+                else if((e.KeyChar != 13) && char.IsDigit(e.KeyChar) || e.KeyChar == 8) 
+                {
+                    FormataCampoQuantidade(_pesado, e);
+                }
+                e.Handled = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw;
             }            
+        }
+
+        private void FormataCampoQuantidade(int pesado, KeyPressEventArgs e)
+        {
+            string texto = "";
+            string texto2 = "";
+            
+            if (pesado != 0)
+            {
+                texto = txtQuantidade.Text.Replace(",", "");
+                texto2 = texto.TrimStart('0');
+                texto2 += e.KeyChar.ToString();
+                texto2 = Regex.Replace(texto2, @"[^\w\.@-]", "");
+                if (e.KeyChar == 8)
+                {
+                    texto = texto2;
+                    texto2 = "";
+                    for (int i = 0; i < texto.TrimStart('0').Length - 1; i++)
+                    {
+                        texto2 += texto[i];
+                    }
+                }
+                switch (texto2.TrimStart('0').Length)
+                {
+                    case 0:
+                        txtQuantidade.Text = "0,000";
+                        break;
+                    case 1:
+                        txtQuantidade.Text = "0,00" + texto2;
+                        break;
+                    case 2:
+                        txtQuantidade.Text = "0,0" + texto2;
+                        break;
+                    case 3:
+                        txtQuantidade.Text = "0," + texto2;
+                        break;
+                    case 4:
+                        for (int i = 0; i < texto2.TrimStart('0').Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                txtQuantidade.Text = texto2[i].ToString() + ",";
+                            }
+                            else
+                            {
+                                txtQuantidade.Text += texto2[i].ToString();
+                            }
+                        }
+                        break;
+                    case 5:
+                        for (int i = 0; i < texto2.TrimStart('0').Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                txtQuantidade.Text = texto2[i].ToString();
+                            }
+                            else if (i == 1)
+                            {
+                                txtQuantidade.Text += texto2[i].ToString() + ",";
+                            }
+                            else
+                            {
+                                txtQuantidade.Text += texto2[i].ToString();
+                            }
+                        }
+                        break;
+                    case 6:
+                        for (int i = 0; i < texto2.TrimStart('0').Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                txtQuantidade.Text = texto2[i].ToString();
+                            }
+                            else if (i == 1)
+                            {
+                                txtQuantidade.Text += texto2[i].ToString();
+                            }
+                            else if (i == 2)
+                            {
+                                txtQuantidade.Text += texto2[i].ToString() + ",";
+                            }
+                            else
+                            {
+                                txtQuantidade.Text += texto2[i].ToString();
+                            }
+                        }
+                        break;
+                    default:
+                        MessageBox.Show("Quantidade inválida! Favor informar peso ate 999 KG");
+                        break;
+                }
+            }
+            else
+            {
+                double quant = 0;
+                if (e.KeyChar == 8)
+                {
+                    texto = txtQuantidade.Text.Trim('0').Replace(",", "");
+                    for (int i = 0; i < texto.Length -1; i++)
+                    {
+                        texto2 += texto[i];
+                    }
+                    quant = texto2 == "" ? 0.000 : double.Parse(texto2);
+                    txtQuantidade.Text = string.Format("{0:0.000}", quant);
+                }
+                else
+                {
+                    texto = txtQuantidade.Text.Trim('0').Replace(",", "");
+                    texto += e.KeyChar;
+                    if (texto.Trim('0').Length <= 3)
+                    {
+                        txtQuantidade.Text = texto + ",000";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Favor informar uma quantidade menor que 999 KG");
+                    }
+                }
+                
+            }
         }
 
         private void txtTotalCupom_Enter(object sender, EventArgs e)
@@ -650,6 +780,8 @@ namespace ProjetoPessoal
                 grdPesquisa.Rows.Clear();
                 grdPesquisa.Refresh();
                 TotalCupom = 0;
+                Pagamento._valortroco = 0;
+                Pagamento._valortotalcupom = 0;
             }
             catch (Exception ex)
             {
@@ -680,6 +812,7 @@ namespace ProjetoPessoal
         private void TelaVenda_Load(object sender, EventArgs e)
         {
             Utilitarios util = new Utilitarios();
+            util.VerificaVersao();
             util.VerificaBancoexistente();
             util.ObeterNumeroSerie();
         }
