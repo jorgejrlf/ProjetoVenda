@@ -79,7 +79,7 @@ namespace ProjetoPessoal
                 grdprodutos.Rows.Clear();
                 DataTable produtos = new DataTable();
                 Utilitarios util = new Utilitarios();
-                string csql = "select codigo, descricao, preco, TipoProduto from produtos";
+                string csql = "select codigo, descricao, preco, TipoProduto from produtos order by descricao";
                 produtos = util.ConsultaBanco(csql);
 
                 if (produtos.Rows.Count > 0)
@@ -272,7 +272,7 @@ namespace ProjetoPessoal
                 Utilitarios util = new Utilitarios();
                 if (Operacao == "Novo")
                 {
-                    util.InsercaoNoBanco("Insert", "produtos", "codigo, descricao, preco, TipoProduto", txtCodigoBarra.Text + ",'" + txtDescricao.Text + "' ," + string.Format("{0:00}", txtPrecoVenda.Text).Replace(",", ".") + "," + chkPesado.CheckState);
+                    util.InsercaoNoBanco("Insert", "produtos", "codigo, descricao, preco, TipoProduto", txtCodigoBarra.Text + ",'" + txtDescricao.Text + "' ," + string.Format("{0:00}", txtPrecoVenda.Text).Replace(",", ".") + "," + (int)chkPesado.CheckState);
                 }
                 else
                 {
