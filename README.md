@@ -46,7 +46,6 @@ git clone https://github.com/jorgejrlf/ProjetoVenda
 ```
 ### :beginner: Iniciando a aplicação
 1. Abrir o visual studio e localizar o arquivo ProjetoPessoal.sln
-```
 
 Esse projeto foi desenvolvido utilizando os seguintes recursos:
 
