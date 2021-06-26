@@ -49,8 +49,8 @@ git clone https://github.com/jorgejrlf/ProjetoVenda
 
 Esse projeto foi desenvolvido utilizando os seguintes recursos:
 
--  [Editor](https://visualstudio.microsoft.com/pt-br);
--  [SGBD](https://sqlitestudio.pl);
+-  [Editor Visual Studio](https://visualstudio.microsoft.com/pt-br);
+-  [SQLite](https://sqlitestudio.pl);
 ---
 
 Feito por Thiago Almeida :blue_heart: Contato: https://www.linkedin.com/in/jorge-fernandes-76971710a/ :blush:
